@@ -1,25 +1,44 @@
 'use strict';
-var avatar = document.querySelector('.popup__avatar');
-var offer = document.querySelector('.popup__close');
-var title = document.querySelector('.popup__title')
-var address = document.querySelector('.popup__text--address');
-var price = document.querySelector('.popup__text--price');
-var type = document.querySelector('.popup__type');
-var rooms = document.querySelector();
-var guests = document.querySelector('.popup__text--capacity');
-var checkin = document.querySelector('.popup__features');
-var checkout = document.querySelector('.popup__feature--wifi');
-var features = document.querySelector('.popup__feature--dishwasher');
-var description = document.querySelector('.popup__feature--parking');
-var photos = document.querySelector('.popup__feature--washer');
-var photos = document.querySelector('.popup__feature--elevator');
-var location = document.querySelector('.popup__feature--conditioner');
-var x = document.querySelector('.')
-var y = document.querySelector
 
-var template = document.querySelector('#card').content.querySelector("article");
+var adverts = [];
+function generateRandomValue(min, max) {
+  var rand = min + Math.random() * (max - min + 1);
+  rand = Math.floor(rand);
+  return rand;
+}
+
+function getRandomItem(array) {
+  var rand = Math.floor(Math.random() * array.lenght);
+  return array[rand];
+}
+
+for (var i = 0; i < 8; i++) {
+  var ad = {};
+  var TITLE_NAMES = ['Большая уютная квартира', 'Маленькая неутная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгалао по колено в воде']
+  var OBJECT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
+  var CHECKIN_TIMES = ['12:00', '13:00', '14:00'];
+  var FEATURES_SERVICES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+
+  var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
 
+
+
+  ad.author = 'img/avatars/user0' + (i + 1) + '.png';
+  ad.offer.title = getRandomItem(TITLE_NAMES);
+  ad.offer.adress = generateRandomValue(0, 1024) + ',' + generateRandomValue(130, 630);
+  ad.offer.price =
+    ad.offer.type = getRandomItem(OBJECT_TYPE);
+  ad.offer.rooms =
+    ad.offer.guests =
+    ad.offer.checkin =
+    ad.offer.checkout =
+    ad.offer.features =
+    ad.offer.description =
+    ad.offer.photos =
+    ad.location =
+    adverts.push(ad);
+}
 
 /*{
   "author": {
@@ -43,3 +62,4 @@ var template = document.querySelector('#card').content.querySelector("article");
       "y": случайное число, координата y метки на карте от 130 до 630.
   }
 }*/
+ф
