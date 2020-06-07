@@ -18,27 +18,39 @@ for (var i = 0; i < 8; i++) {
   var OBJECT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
   var CHECKIN_TIMES = ['12:00', '13:00', '14:00'];
   var FEATURES_SERVICES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-
   var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
-
-
 
 
   ad.author = 'img/avatars/user0' + (i + 1) + '.png';
   ad.offer.title = getRandomItem(TITLE_NAMES);
   ad.offer.adress = generateRandomValue(0, 1024) + ',' + generateRandomValue(130, 630);
-  ad.offer.price =
-    ad.offer.type = getRandomItem(OBJECT_TYPE);
-  ad.offer.rooms =
-    ad.offer.guests =
-    ad.offer.checkin =
-    ad.offer.checkout =
-    ad.offer.features =
-    ad.offer.description =
-    ad.offer.photos =
-    ad.location =
-    adverts.push(ad);
+  ad.offer.price = generateRandomValue(0, 20000);
+  ad.offer.type = getRandomItem(OBJECT_TYPE);
+  ad.offer.rooms = generateRandomValue(0, 6);
+  ad.offer.guests = generateRandomValue(0, 100);
+  ad.offer.checkin = getRandomItem(CHECKIN_TIMES);
+  ad.offer.checkout = getRandomItem(CHECKIN_TIMES);
+  ad.offer.features = getRandomItem(FEATURES_SERVICES);
+  ad.offer.description = getRandomItem();
+  ad.offer.photos = getRandomItem(PHOTOS);
+  ad.location.x = generateRandomValue(0, 1024);
+  ad.location.y = generateRandomValue(130, 630);
+  adverts.push(ad);
 }
+
+var pins = document.querySelectorAll('.map__pin');
+var houseTypeField = document.querySelector('#housing-type');
+
+var housePriceField = document.querySelector('#housing-price');
+
+var houseRoomsField = document.querySelector('#housing-rooms');
+
+var houseRoomsField = document.querySelector('#housing-guests');
+
+
+var houseRoomsField = document.querySelector('#housing-features');
+
+
 
 /*{
   "author": {
@@ -62,4 +74,4 @@ for (var i = 0; i < 8; i++) {
       "y": случайное число, координата y метки на карте от 130 до 630.
   }
 }*/
-ф
+
