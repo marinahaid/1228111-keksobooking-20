@@ -8,7 +8,7 @@ function generateRandomValue(min, max) {
 }
 
 function getRandomItem(array) {
-  var rand = Math.floor(Math.random() * array.lenght);
+  var rand = Math.floor(Math.random() * array.length);
   return array[rand];
 }
 
@@ -31,47 +31,41 @@ for (var i = 0; i < 8; i++) {
   ad.offer.checkin = getRandomItem(CHECKIN_TIMES);
   ad.offer.checkout = getRandomItem(CHECKIN_TIMES);
   ad.offer.features = getRandomItem(FEATURES_SERVICES);
-  ad.offer.description = getRandomItem();
+  ad.offer.description = '';
   ad.offer.photos = getRandomItem(PHOTOS);
   ad.location.x = generateRandomValue(0, 1024);
   ad.location.y = generateRandomValue(130, 630);
   adverts.push(ad);
 }
+console.log(adverts);
 
-var pins = document.querySelectorAll('.map__pin');
-var houseTypeField = document.querySelector('#housing-type');
-
-var housePriceField = document.querySelector('#housing-price');
-
-var houseRoomsField = document.querySelector('#housing-rooms');
-
-var houseRoomsField = document.querySelector('#housing-guests');
+var map = document.querySelector('.map');
+map.classList.remove('map--faded');
 
 
-var houseRoomsField = document.querySelector('#housing-features');
+var pinTemplate = document.querySelector('#pin').content.querySelector('.map-pin');
+
+function renderPin(ad) {
+  var pinElement = pinTemplate.cloneNode(true);
+  pinElement.style.left = ad.location.x + 'px';
+  pinElement.style.top = ad.location.y + 'px';
+  pinElement.querySelector('img').src = ad.author;
+  pinElement.querySelector('img').alt = ad.offer.title;
+  return pinElement;
+}
+
+var pinList = document.querySelector('.map-pins');
+var fragment = document.createDocumentFragment();
+for (var i = 0; i < adverts.length; i++) {
+  var ad = adverts[i];
+  var pin = renderPin(ad);
+  fragment.appendChild(pin);
+  pinList.appendChild(fragment);
+}
 
 
 
-/*{
-  "author": {
-      "avatar": строка, адрес изображения вида img/avatars/user{{xx}}.png, где {{xx}} это число от 1 до 8 с ведущим нулём. Например, 01, 02 и т. д. Адреса изображений не повторяются
-  },
-  "offer": {
-      "title": строка, заголовок предложения
-      "address": строка, адрес предложения. Для простоты пусть пока представляет собой запись вида "{{location.x}}, {{location.y}}", например, "600, 350"
-      "price": число, стоимость
-      "type": строка с одним из четырёх фиксированных значений: palace, flat, house или bungalo
-      "rooms": число, количество комнат
-      "guests": число, количество гостей, которое можно разместить
-      "checkin": строка с одним из трёх фиксированных значений: 12:00, 13:00 или 14:00,
-      "checkout": строка с одним из трёх фиксированных значений: 12:00, 13:00 или 14:00
-      "features": массив строк случайной длины из ниже предложенных: "wifi", "dishwasher", "parking", "washer", "elevator", "conditioner",
-      "description": строка с описанием,
-      "photos": массив строк случайной длины, содержащий адреса фотографий "http://o0.github.io/assets/images/tokyo/hotel1.jpg", "http://o0.github.io/assets/images/tokyo/hotel2.jpg", "http://o0.github.io/assets/images/tokyo/hotel3.jpg"
-  },
-  "location": {
-      "x": случайное число, координата x метки на карте. Значение ограничено размерами блока, в котором перетаскивается метка.
-      "y": случайное число, координата y метки на карте от 130 до 630.
-  }
-}*/
+
+
+
 
