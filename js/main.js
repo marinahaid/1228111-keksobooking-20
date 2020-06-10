@@ -1,4 +1,9 @@
 'use strict';
+var TITLE_NAMES = ['Большая уютная квартира', 'Маленькая неутная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгалао по колено в воде']
+var OBJECT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
+var CHECKIN_TIMES = ['12:00', '13:00', '14:00'];
+var FEATURES_SERVICES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
 var adverts = [];
 function generateRandomValue(min, max) {
@@ -13,14 +18,11 @@ function getRandomItem(array) {
 }
 
 for (var i = 0; i < 8; i++) {
-  var ad = {};
-  var TITLE_NAMES = ['Большая уютная квартира', 'Маленькая неутная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгалао по колено в воде']
-  var OBJECT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
-  var CHECKIN_TIMES = ['12:00', '13:00', '14:00'];
-  var FEATURES_SERVICES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-  var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
-
-
+  var ad = {
+    'author': '',
+    'offer': {},
+    'location': {}
+  };
   ad.author = 'img/avatars/user0' + (i + 1) + '.png';
   ad.offer.title = getRandomItem(TITLE_NAMES);
   ad.offer.adress = generateRandomValue(0, 1024) + ',' + generateRandomValue(130, 630);
@@ -37,13 +39,12 @@ for (var i = 0; i < 8; i++) {
   ad.location.y = generateRandomValue(130, 630);
   adverts.push(ad);
 }
-console.log(adverts);
 
 var map = document.querySelector('.map');
 map.classList.remove('map--faded');
 
 
-var pinTemplate = document.querySelector('#pin').content.querySelector('.map-pin');
+var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
 function renderPin(ad) {
   var pinElement = pinTemplate.cloneNode(true);
@@ -54,15 +55,16 @@ function renderPin(ad) {
   return pinElement;
 }
 
-var pinList = document.querySelector('.map-pins');
+var pinList = document.querySelector('.map__pins');
 var fragment = document.createDocumentFragment();
-for (var i = 0; i < adverts.length; i++) {
-  var ad = adverts[i];
-  var pin = renderPin(ad);
+for (var j = 0; j < adverts.length; j++) {
+  var ad1 = adverts[j];
+  var pin = renderPin(ad1);
   fragment.appendChild(pin);
-  pinList.appendChild(fragment);
+
 }
 
+pinList.appendChild(fragment);
 
 
 
