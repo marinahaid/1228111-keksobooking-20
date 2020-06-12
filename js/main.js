@@ -69,7 +69,7 @@ pinList.appendChild(fragment);
 
 
 
-var allfieldsets = document.querySelector('fieldset');
+var allfieldsets = document.querySelectorAll('fieldset');
 allfieldsets.setAttribute('disabled');
 
 
@@ -99,8 +99,8 @@ mapPin.addEventListener('keydoun', function (evt) {
 });
 
 var input = document.querySelector('input');
-var successTemplate = document.querySelector(#success).content.querySelector("div");
-var errorTemplate = document.querySelector(#error).content.querySelector("div");
+var successTemplate = document.querySelector('#success').content.querySelector('div');
+var errorTemplate = document.querySelector('#error').content.querySelector('div');
 
 input.addEventListener('invalid', function (evt){
 if (input.validity.tooShort) {
