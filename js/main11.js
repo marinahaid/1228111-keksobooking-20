@@ -7,8 +7,6 @@ var FEATURES_SERVICES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 
 var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 var PIN_WIDTH = 50;
 var PIN_HEIGHT = 70;
-var MIN_TITLE = 30;
-var MAX_TITLE = 100;
 //переменная для массива
 var adverts = [];
 
@@ -74,95 +72,8 @@ function drawPins() {
     var ad1 = adverts[j];
     var pin = renderPin(ad1);
     fragment.appendChild(pin);
-  }
-
-  pinList.appendChild(fragment);
 }
 
-var form = document.querySelector('.ad-form');
-var allfieldsets = form.querySelectorAll('fieldset');
-var map = document.querySelector('.map');
-
-var mapFilters = document.querySelector('.map__filters');
-var allSelects = mapFilters.querySelectorAll('select');
-var fieldsetmapFilters = mapFilters.querySelector('fieldset');
-
-//перебираем филдсеты и дизейблим
-function disactivatePage() {
-  for (var i = 0; i < allfieldsets.length; i++) {
-    allfieldsets[i].disabled = true;
-  }
-  //делаем недоступными фильтры формы
-  for (var j = 0; j < allSelects.length; j++) {
-    allSelects[j].disabled = true;
-  }
-  fieldsetmapFilters.disabled = true;
+pinList.appendChild(fragment);
 }
 
-//вызов функцию, кот делает фильтры и фиелдсеты неактивными
-disactivatePage();
-
-//вызываем функцию, кот делает стр активной
-function activatePage() {
-  for (var i = 0; i < allfieldsets.length; i++) {
-    allfieldsets[i].disabled = false;
-  }
-
-  for (var j = 0; j < allSelects.length; j++) {
-    allSelects[j].disabled = false;
-  }
-
-  fieldsetmapFilters.disabled = false;
-  map.classList.remove('map--faded');
-  form.classList.remove('ad-form--disabled');
-  drawPins();
-}
-
-var title = document.querySelector('#title');
-title.addEventListener('invalid', function (evt) {
-  if (title.validity.tooShort) {
-    title.setCustomValidity('Минимальная длина 30 символов');
-  } else if (title.validity.tooLong) {
-    title.setCustomValidity('Максимальная длина 100 символов');
-  } else if (title.validity.valueMissing) {
-    title.setCustomValidity('Обязательное текстовое поле');
-  } else {
-    title.setCustomValidity('');
-  }
-});
-
-title.addEventListener('input', function (evt) {
-  var valueLength = title.value.length;
-
-  if (valueLength < MIN_TITLE) {
-    title.setCustomValidity('Еще ' + (MIN_TITLE - valueLength) + ' симв.');
-  } else if (valueLength > MAX_TITLE) {
-    title.setCustomValidity('Удалите лишние ' + (valueLength - MIN_TITLE) + ' симв.');
-  } else {
-    title.setCustomValidity('');
-  }
-});
-
-
-var mapPin = document.querySelector('.map__pin--main');
-var address = form.querySelector('#address');
-//x = mapPin.offsetLeft;
-//y = mapPin.offsetTop;
-var xCoord = mapPin.offsetLeft + PIN_WIDTH / 2;
-var yCoord = mapPin.offsetTop + PIN_HEIGHT / 2;
-
-//address.value = xCoord + ',' + yCoord;
-
-//var price = form.querySelector('#price');
-
-
-mapPin.addEventListener('mousedown', function () {
-  activatePage();
-});
-
-mapPin.addEventListener('keydown', function (evt) {
-  evt.preventDefault();
-  if (evt.key === 'Enter') {
-    activatePage();
-  }
-});
