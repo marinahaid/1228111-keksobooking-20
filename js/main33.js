@@ -5,8 +5,6 @@ var OBJECT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
 var CHECKIN_TIMES = ['12:00', '13:00', '14:00'];
 var FEATURES_SERVICES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
-var PIN_WIDTH = 50;
-var PIN_HEIGHT = 70;
 //переменная для массива
 var adverts = [];
 
@@ -44,12 +42,12 @@ for (var i = 0; i < 8; i++) {
   ad.location.y = generateRandomValue(130, 630);
   adverts.push(ad);
 }
-
+//находим класс и удаляем
+var map = document.querySelector('.map');
 
 
 //создаем переменную на основе шаблона
 var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
-
 //функцияб устанавливающая значения атрибутов
 function renderPin(ad) {
   var pinElement = pinTemplate.cloneNode(true);
@@ -59,21 +57,96 @@ function renderPin(ad) {
   pinElement.querySelector('img').alt = ad.offer.title;
   return pinElement;
 }
-
 //находим класс куда добавим элементы-метки
 var pinList = document.querySelector('.map__pins');
 var fragment = document.createDocumentFragment();
 
 
 
-//вызываем функцию в цикле для каждого элемента в мвссиве, код отрисовки меток
+
+var form = document.querySelector('ad-form');
+var allfieldsets = form.querySelectorAll('fieldset');
+
+
+var mapFilters = document.querySelector('.map__filters');
+var allSelects = mapFilters.querySelectorAll('select');
+var fieldsetmapFilters = mapFilters.querySelector('fieldset');
+
+//перебираем филдсеты и дизейблим
+function disactivatePage() {
+  for (var i = 0; i < allfieldsets.length; i++) {
+  allfieldsets[i].disabled = true;
+  }
+//делаем недоступными фильтры формы
+ for (var j = 0; j < allSelects.length; j++) {
+    allSelects[j].disabled = true;
+  }
+  fieldsetmapFilters.disabled = true;
+}
+//вызов функцию, кот делает фильтры и фиелдсеты неактивными
+disactivatePage();
+
+ var mapPin = document.querySelector('.map__pin--main');
+
+  mapPin.addEventListener('mousedown', function () {
+   activatePage();
+
+
+    mapPin.addEventListener('keydown', function (evt) {
+      evt.preventDefault();
+      if (evt.key === 'Enter') {
+        activatePage();
+      }
+
+mapPin.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Enter') {
+      allfieldsets.classList.remove('disabled');
+    }
+  });
+
+  //вызываем функцию в цикле для каждого элемента в мвссиве, код отрисовки меток
 function drawPins() {
   for (var j = 0; j < adverts.length; j++) {
     var ad1 = adverts[j];
     var pin = renderPin(ad1);
     fragment.appendChild(pin);
+
+  }
+
+  pinList.appendChild(fragment);
+  }
+//вызываем функцию, кот делает стр активной
+  function activatePage() {
+    for (var i = 0; i < allfieldsets.length; i++) {
+      allfieldsets[i].disabled = false;
+  }
+
+  for (var j = 0; j < allSelects.length; j++) {
+    allSelects[j].disabled = false;
+  }
+  fieldsetmapFilters.disabled = false;
+  map.classList.remove('map--faded');
+  form.classList.remove('ad-form--disabled')
+   drawPins();
 }
 
-pinList.appendChild(fragment);
-}
 
+
+
+  /*var input = document.querySelector('input');
+  var successTemplate = document.querySelector('#success').content.querySelector('div');
+  var errorTemplate = document.querySelector('#error').content.querySelector('div');
+
+  input.addEventListener('invalid', function (evt) {
+    if (input.validity.tooShort) {
+
+    }
+
+    else if (input.validity.tooLong) {
+
+    }
+
+    else if (input.validity.valueMissing) {
+
+    }
+  });*/
