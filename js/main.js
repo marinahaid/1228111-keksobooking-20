@@ -118,30 +118,35 @@ function activatePage() {
   drawPins();
 }
 
-var title = document.querySelector('#title');
-title.addEventListener('invalid', function (evt) {
-  if (title.validity.tooShort) {
-    title.setCustomValidity('Минимальная длина 30 символов');
-  } else if (title.validity.tooLong) {
-    title.setCustomValidity('Максимальная длина 100 символов');
-  } else if (title.validity.valueMissing) {
-    title.setCustomValidity('Обязательное текстовое поле');
-  } else {
-    title.setCustomValidity('');
-  }
-});
+var guests = document.querySelector('#capacity');
 
-title.addEventListener('input', function (evt) {
-  var valueLength = title.value.length;
+function checkNumGuests (room) {
+   var numGuests = parselnt(guests.value, 10);
 
-  if (valueLength < MIN_TITLE) {
-    title.setCustomValidity('Еще ' + (MIN_TITLE - valueLength) + ' симв.');
-  } else if (valueLength > MAX_TITLE) {
-    title.setCustomValidity('Удалите лишние ' + (valueLength - MIN_TITLE) + ' симв.');
-  } else {
-    title.setCustomValidity('');
+    guests.setCustomValidity('');
+if (room === 1) {
+ if (numGuests !==1) {
+    guests.setCustomValidity('Для одной комнаты может быть только 1 гость');
   }
-});
+  }
+
+if (room === 2) {
+    if ((numGuests !==1) && (numGuests !==2)) {
+      guests.setCustomValidity('Для двух комнат может быть  1 или 2 гостя');
+    }
+    }
+
+    if (room === 3) {
+      if (numGuests === 0) {
+        guests.setCustomValidity('Для трех комнат может быть  1 или 2  или 3 гостя');
+      }
+      }
+
+      if (room === 100) {
+        if ((numGuests !== [100-0] {
+          guests.setCustomValidity('Не для гостей');
+        }
+        }
 
 
 var mapPin = document.querySelector('.map__pin--main');
