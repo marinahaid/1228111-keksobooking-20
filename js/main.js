@@ -1,10 +1,13 @@
 'use strict';
+
 //создаем константы с массивом
+
 var TITLE_NAMES = ['Большая уютная квартира', 'Маленькая неутная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгалао по колено в воде']
 var OBJECT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
 var CHECKIN_TIMES = ['12:00', '13:00', '14:00'];
 var FEATURES_SERVICES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+
 var PIN_WIDTH = 50;
 var PIN_HEIGHT = 70;
 var MIN_TITLE = 30;
@@ -13,11 +16,16 @@ var MAX_TITLE = 100;
 var adverts = [];
 
 //функция для перебора чисел
+
+
+var adverts = [];
+
 function generateRandomValue(min, max) {
   var rand = min + Math.random() * (max - min + 1);
   rand = Math.floor(rand);
   return rand;
 }
+
 //функция для перебора строк
 function getRandomItem(array) {
   var rand = Math.floor(Math.random() * array.length);
@@ -52,6 +60,13 @@ for (var i = 0; i < 8; i++) {
 var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
 //функцияб устанавливающая значения атрибутов
+var map = document.querySelector('.map');
+map.classList.remove('map--faded');
+
+
+var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
+
+
 function renderPin(ad) {
   var pinElement = pinTemplate.cloneNode(true);
   pinElement.style.left = ad.location.x + 'px';
@@ -60,6 +75,7 @@ function renderPin(ad) {
   pinElement.querySelector('img').alt = ad.offer.title;
   return pinElement;
 }
+
 
 //находим класс куда добавим элементы-метки
 var pinList = document.querySelector('.map__pins');
@@ -174,7 +190,6 @@ type.addEventListener('change', function () {
   }
 });
 
-
 var mapPin = document.querySelector('.map__pin--main');
 var address = form.querySelector('#address');
 x = mapPin.offsetLeft;
@@ -194,3 +209,14 @@ mapPin.addEventListener('keydown', function (evt) {
     activatePage();
   }
 });
+
+var pinList = document.querySelector('.map__pins');
+var fragment = document.createDocumentFragment();
+for (var j = 0; j < adverts.length; j++) {
+  var ad1 = adverts[j];
+  var pin = renderPin(ad1);
+  fragment.appendChild(pin);
+
+}
+
+pinList.appendChild(fragment);
