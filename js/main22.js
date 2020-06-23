@@ -21,7 +21,7 @@
     PIN_HEIGHT: PIN_HEIGHT;
     adverts: adverts;
   };
-
+}) ();
 
 
 
@@ -36,7 +36,7 @@ function getRandomItem(array) {
   var rand = Math.floor(Math.random() * array.length);
   return array[rand];
 }
-}) ();
+
 for (var i = 0; i < 8; i++) {
   var ad = {
     'author': '',
@@ -65,14 +65,14 @@ for (var i = 0; i < 8; i++) {
 var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
 //функцияб устанавливающая значения атрибутов
-/*function renderPin(ad) {
+function renderPin(ad) {
   var pinElement = pinTemplate.cloneNode(true);
   pinElement.style.left = ad.location.x + 'px';
   pinElement.style.top = ad.location.y + 'px';
   pinElement.querySelector('img').src = ad.author;
   pinElement.querySelector('img').alt = ad.offer.title;
   return pinElement;
-}*/
+}
 
 //находим класс куда добавим элементы-метки
 var pinList = document.querySelector('.map__pins');
@@ -81,7 +81,7 @@ var fragment = document.createDocumentFragment();
 
 
 //вызываем функцию в цикле для каждого элемента в мвссиве, код отрисовки меток
-/*function drawPins() {
+function drawPins() {
   for (var j = 0; j < adverts.length; j++) {
     var ad1 = adverts[j];
     var pin = renderPin(ad1);
@@ -89,7 +89,7 @@ var fragment = document.createDocumentFragment();
   }
 
   pinList.appendChild(fragment);
-}*/
+}
 
 var form = document.querySelector('.ad-form');
 var allfieldsets = form.querySelectorAll('fieldset');
@@ -100,7 +100,7 @@ var allSelects = mapFilters.querySelectorAll('select');
 var fieldsetmapFilters = mapFilters.querySelector('fieldset');
 
 //перебираем филдсеты и дизейблим
-/*function disactivatePage() {
+function disactivatePage() {
   for (var i = 0; i < allfieldsets.length; i++) {
     allfieldsets[i].disabled = true;
   }
@@ -128,9 +128,9 @@ function activatePage() {
   map.classList.remove('map--faded');
   form.classList.remove('ad-form--disabled');
   drawPins();
-}*/
+}
 
-/*var guests = document.querySelector('#capacity');
+var guests = document.querySelector('#capacity');
 
 function checkNumGuests(room) {
   var numGuests = parselnt(guests.value, 10);
@@ -195,7 +195,7 @@ y = mapPin.offsetTop;
 var xCoord = mapPin.offsetLeft + PIN_WIDTH / 2;
 var yCoord = mapPin.offsetTop + PIN_HEIGHT / 2;
 
-address.value = xCoord + ',' + yCoord;*/
+address.value = xCoord + ',' + yCoord;
 
 mapPin.addEventListener('mousedown', function () {
   activatePage();
@@ -207,12 +207,3 @@ mapPin.addEventListener('keydown', function (evt) {
     activatePage();
   }
 });
-
-
-
-
-
-
-
-
-
