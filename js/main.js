@@ -1,13 +1,12 @@
 'use strict';
-(function () {
+/*(function () {
 
   var TITLE_NAMES = ['Большая уютная квартира', 'Маленькая неутная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгалао по колено в воде']
   var OBJECT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
   var CHECKIN_TIMES = ['12:00', '13:00', '14:00'];
   var FEATURES_SERVICES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
-  var PIN_WIDTH = 50;
-  var PIN_HEIGHT = 70;
+
   //переменная для массива
   var adverts = [];
 
@@ -75,8 +74,8 @@ var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pi
 }*/
 
 //находим класс куда добавим элементы-метки
-var pinList = document.querySelector('.map__pins');
-var fragment = document.createDocumentFragment();
+//var pinList = document.querySelector('.map__pins');
+
 
 
 
@@ -91,44 +90,13 @@ var fragment = document.createDocumentFragment();
   pinList.appendChild(fragment);
 }*/
 
-var form = document.querySelector('.ad-form');
-var allfieldsets = form.querySelectorAll('fieldset');
-var map = document.querySelector('.map');
 
-var mapFilters = document.querySelector('.map__filters');
-var allSelects = mapFilters.querySelectorAll('select');
-var fieldsetmapFilters = mapFilters.querySelector('fieldset');
 
-//перебираем филдсеты и дизейблим
-/*function disactivatePage() {
-  for (var i = 0; i < allfieldsets.length; i++) {
-    allfieldsets[i].disabled = true;
-  }
-  //делаем недоступными фильтры формы
-  for (var j = 0; j < allSelects.length; j++) {
-    allSelects[j].disabled = true;
-  }
-  fieldsetmapFilters.disabled = true;
-}
 
-//вызов функцию, кот делает фильтры и фиелдсеты неактивными
-disactivatePage();
 
-//вызываем функцию, кот делает стр активной
-function activatePage() {
-  for (var i = 0; i < allfieldsets.length; i++) {
-    allfieldsets[i].disabled = false;
-  }
 
-  for (var j = 0; j < allSelects.length; j++) {
-    allSelects[j].disabled = false;
-  }
 
-  fieldsetmapFilters.disabled = false;
-  map.classList.remove('map--faded');
-  form.classList.remove('ad-form--disabled');
-  drawPins();
-}*/
+
 
 /*var guests = document.querySelector('#capacity');
 
@@ -197,16 +165,7 @@ var yCoord = mapPin.offsetTop + PIN_HEIGHT / 2;
 
 address.value = xCoord + ',' + yCoord;*/
 
-mapPin.addEventListener('mousedown', function () {
-  activatePage();
-});
 
-mapPin.addEventListener('keydown', function (evt) {
-  evt.preventDefault();
-  if (evt.key === 'Enter') {
-    activatePage();
-  }
-});
 
 
 

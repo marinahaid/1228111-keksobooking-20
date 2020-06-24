@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+/*(function () {
  function disactivatePage() {
     for (var i = 0; i < allfieldsets.length; i++) {
       allfieldsets[i].disabled = true;
@@ -12,8 +12,8 @@
     fieldsetmapFilters.disabled = true;
   }
 
-  //вызов функцию, кот делает фильтры и фиелдсеты неактивными
-  disactivatePage();
+
+
 
   //вызываем функцию, кот делает стр активной
   function activatePage() {
@@ -30,4 +30,4 @@
     form.classList.remove('ad-form--disabled');
     drawPins();
   }
-})();
+})();*/
