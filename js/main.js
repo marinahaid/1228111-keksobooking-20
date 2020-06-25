@@ -1,5 +1,6 @@
 'use strict';
-/*(function () {
+
+(function () {
 
   var TITLE_NAMES = ['Большая уютная квартира', 'Маленькая неутная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгалао по колено в воде']
   var OBJECT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
@@ -10,32 +11,44 @@
   //переменная для массива
   var adverts = [];
 
-  window.main = {
-    TITLE_NAMES: TITLE_NAMES;
-    OBJECT_TYPE: OBJECT_TYPE;
-    CHECKIN_TIMES: CHECKIN_TIMES;
-    FEATURES_SERVICES: FEATURES_SERVICES;
-    PHOTOS: PHOTOS;
-    PIN_WIDTH: PIN_WIDTH;
-    PIN_HEIGHT: PIN_HEIGHT;
-    adverts: adverts;
-  };
+//функция для перебора чисел
 
 
+//создаем константы с массивом
 
+var TITLE_NAMES = ['Большая уютная квартира', 'Маленькая неутная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгалао по колено в воде']
+var OBJECT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
+var CHECKIN_TIMES = ['12:00', '13:00', '14:00'];
+var FEATURES_SERVICES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+
+var PIN_WIDTH = 50;
+var PIN_HEIGHT = 70;
+var MIN_TITLE = 30;
+var MAX_TITLE = 100;
+//переменная для массива
+var adverts = [];
 
 //функция для перебора чисел
+
+
+var adverts = [];
+
+
 function generateRandomValue(min, max) {
   var rand = min + Math.random() * (max - min + 1);
   rand = Math.floor(rand);
   return rand;
 }
+
 //функция для перебора строк
 function getRandomItem(array) {
   var rand = Math.floor(Math.random() * array.length);
   return array[rand];
 }
+
 }) ();
+
 for (var i = 0; i < 8; i++) {
   var ad = {
     'author': '',
@@ -43,6 +56,7 @@ for (var i = 0; i < 8; i++) {
     'location': {}
   };
   ad.author = 'img/avatars/user0' + (i + 1) + '.png';
+
   ad.offer.title = getRandomItem(window.main.TITLE_NAMES);
   ad.offer.adress = generateRandomValue(0, 1024) + ',' + generateRandomValue(130, 630);
   ad.offer.price = generateRandomValue(0, 20000);
@@ -64,23 +78,45 @@ for (var i = 0; i < 8; i++) {
 var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
 //функцияб устанавливающая значения атрибутов
+
 /*function renderPin(ad) {
+
+var map = document.querySelector('.map');
+map.classList.remove('map--faded');
+
+
+var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
+
+
+function renderPin(ad) {
+
   var pinElement = pinTemplate.cloneNode(true);
   pinElement.style.left = ad.location.x + 'px';
   pinElement.style.top = ad.location.y + 'px';
   pinElement.querySelector('img').src = ad.author;
   pinElement.querySelector('img').alt = ad.offer.title;
   return pinElement;
+
 }*/
 
 //находим класс куда добавим элементы-метки
 //var pinList = document.querySelector('.map__pins');
 
+}
+
+
+//находим класс куда добавим элементы-метки
+var pinList = document.querySelector('.map__pins');
+var fragment = document.createDocumentFragment();
+
 
 
 
 //вызываем функцию в цикле для каждого элемента в мвссиве, код отрисовки меток
+
 /*function drawPins() {
+
+function drawPins() {
   for (var j = 0; j < adverts.length; j++) {
     var ad1 = adverts[j];
     var pin = renderPin(ad1);
@@ -88,16 +124,8 @@ var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pi
   }
 
   pinList.appendChild(fragment);
+
 }*/
-
-
-
-
-
-
-
-
-
 /*var guests = document.querySelector('#capacity');
 
 function checkNumGuests(room) {
@@ -155,7 +183,6 @@ type.addEventListener('change', function () {
   }
 });
 
-
 var mapPin = document.querySelector('.map__pin--main');
 var address = form.querySelector('#address');
 x = mapPin.offsetLeft;
@@ -163,15 +190,5 @@ y = mapPin.offsetTop;
 var xCoord = mapPin.offsetLeft + PIN_WIDTH / 2;
 var yCoord = mapPin.offsetTop + PIN_HEIGHT / 2;
 
+
 address.value = xCoord + ',' + yCoord;*/
-
-
-
-
-
-
-
-
-
-
-
