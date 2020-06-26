@@ -54,7 +54,6 @@
       var pin = window.pin.renderPin(ad1);
       fragment.appendChild(pin);
     }
-
     pinList.appendChild(fragment);
   }
 
