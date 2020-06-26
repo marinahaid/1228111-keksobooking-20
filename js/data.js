@@ -19,6 +19,7 @@
     rand = Math.floor(rand);
     return rand;
   }
+
   //функция для перебора строк
   function getRandomItem(array) {
     var rand = Math.floor(Math.random() * array.length);
@@ -31,6 +32,7 @@
       'offer': {},
       'location': {}
     };
+
     ad.author = 'img/avatars/user0' + (i + 1) + '.png';
     ad.offer.title = getRandomItem(TITLE_NAMES);
     ad.offer.adress = generateRandomValue(0, 1024) + ',' + generateRandomValue(130, 630);
@@ -46,10 +48,11 @@
     ad.location.x = generateRandomValue(0, 1024);
     ad.location.y = generateRandomValue(130, 630);
     adverts.push(ad);
+  }
 
 
-generateAdverts();
-window.data = {
-  adverts: adverts;
-}
-}) ();
+  generateAdverts();
+  window.data = {
+    adverts: adverts
+  };
+})();
