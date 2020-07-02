@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 (function () {
 
@@ -55,4 +55,4 @@
   window.data = {
     adverts: adverts
   };
-})();
+})();*/

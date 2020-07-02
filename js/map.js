@@ -13,6 +13,20 @@
   var mapFilters = document.querySelector(".map__filters");
   var allSelects = mapFilters.querySelectorAll("select");
   var fieldsetmapFilters = mapFilters.querySelector("fieldset");
+  var window.adverts = [];
+
+  var onError = function(messange) {
+    console.log(messange);
+  };
+
+  var onSuccess = function(data) {
+ window.adverts = data;
+ activatePage()
+  };
+  function initPage() {
+    window.load(onSuccess, onError )
+  }
+
 
   //перебираем филдсеты и дизейблим
   function disactivatePage() {
@@ -67,13 +81,13 @@
 
 
   mapPin.addEventListener('mousedown', function () {
-    activatePage();
+    initPage();
   });
 
   mapPin.addEventListener('keydown', function (evt) {
     evt.preventDefault();
     if (evt.key === 'Enter') {
-      activatePage();
+      initPage();
     }
   });
 })();
