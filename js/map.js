@@ -6,25 +6,25 @@
   var PIN_WIDTH = 50;
   var PIN_HEIGHT = 70;
 
-  var form = document.querySelector(".ad-form");
-  var allfieldsets = form.querySelectorAll("fieldset");
-  var map = document.querySelector(".map");
+  var form = document.querySelector('.ad-form');
+  var allfieldsets = form.querySelectorAll('fieldset');
+  var map = document.querySelector('.map');
 
-  var mapFilters = document.querySelector(".map__filters");
-  var allSelects = mapFilters.querySelectorAll("select");
-  var fieldsetmapFilters = mapFilters.querySelector("fieldset");
+  var mapFilters = document.querySelector('.map__filters');
+  var allSelects = mapFilters.querySelectorAll('select');
+  var fieldsetmapFilters = mapFilters.querySelector('fieldset');
   window.adverts = [];
 
-  var onError = function(messange) {
+  var onError = function (messange) {
     console.log(messange);
   };
 
-  var onSuccess = function(data) {
+  var onSuccess = function (data) {
  window.adverts = data;
- activatePage()
+ activatePage();
   };
   function initPage() {
-    window.load(onSuccess, onError )
+    window.load(onSuccess, onError);
   }
 
 
@@ -54,8 +54,8 @@
     }
 
     fieldsetmapFilters.disabled = false;
-    map.classList.remove("map--faded");
-    form.classList.remove("ad-form--disabled");
+    map.classList.remove('map--faded');
+    form.classList.remove('ad-form--disabled');
     drawPins();
     setAddress();
   }
