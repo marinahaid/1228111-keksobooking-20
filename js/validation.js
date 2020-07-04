@@ -1,13 +1,13 @@
 'use strict';
 
 (function () {
-  var form = document.querySelector(".ad-form");
+  var form = document.querySelector('.ad-form');
   var guests = document.querySelector('#capacity');
   var type = form.querySelector('#type');
   var price = form.querySelector('#price');
   var rooms = form.querySelector('#room_number');
   function checkNumGuests(room) {
-    // var numGuests = parselnt(guests.value, 10);
+    var numGuests = parseInt(guests.value, 10);
 
     guests.setCustomValidity('');
     if (room === 1) {
@@ -52,18 +52,19 @@
       price.min = 10000;
     }
     price.placeholder = '' + price.min;
-    type.addEventListener('change', function () {
-      checkType(type.value);
-    });
-    guests.addEventListener('change', function () {
-      var roomNumber = parselnt(room.value, 10);
-      checkNumGuests(roomNumber);
-    });
-    rooms.addEventListener('change', function () {
-      var roomNumber = parselnt(room.value, 10);
-      checkNumGuests(roomNumber);
-    });
   }
+  type.addEventListener('change', function () {
+    checkType(type.value);
+  });
+  guests.addEventListener('change', function () {
+    var roomNumber = parseInt(rooms.value, 10);
+    checkNumGuests(roomNumber);
+  });
+  rooms.addEventListener('change', function () {
+    var roomNumber = parseInt(rooms.value, 10);
+    checkNumGuests(roomNumber);
+  });
+
 })();
 
 

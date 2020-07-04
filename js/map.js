@@ -13,6 +13,20 @@
   var mapFilters = document.querySelector(".map__filters");
   var allSelects = mapFilters.querySelectorAll("select");
   var fieldsetmapFilters = mapFilters.querySelector("fieldset");
+  window.adverts = [];
+
+  var onError = function(messange) {
+    console.log(messange);
+  };
+
+  var onSuccess = function(data) {
+ window.adverts = data;
+ activatePage()
+  };
+  function initPage() {
+    window.load(onSuccess, onError )
+  }
+
 
   //перебираем филдсеты и дизейблим
   function disactivatePage() {
@@ -49,8 +63,8 @@
   var pinList = document.querySelector('.map__pins');
   function drawPins() {
     var fragment = document.createDocumentFragment();
-    for (var j = 0; j < window.data.adverts.length; j++) {
-      var ad1 = window.data.adverts[j];
+    for (var j = 0; j < window.adverts.length; j++) {
+      var ad1 = window.adverts[j];
       var pin = window.pin.renderPin(ad1);
       fragment.appendChild(pin);
     }
@@ -67,13 +81,13 @@
 
 
   mapPin.addEventListener('mousedown', function () {
-    activatePage();
+    initPage();
   });
 
   mapPin.addEventListener('keydown', function (evt) {
     evt.preventDefault();
     if (evt.key === 'Enter') {
-      activatePage();
+      initPage();
     }
   });
 })();
