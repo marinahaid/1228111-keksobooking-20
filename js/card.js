@@ -6,8 +6,17 @@
     .content.querySelector('.map__card');
 
   var cardElement = cardTemplate.cloneNode(true);
-  // var cardData = window.adverts[0];
-  window.card = function (cardData) {
+
+  function removeCard() {
+    var card = map.querySelector('.map__card');
+    if (card !== null) {
+      card.remove();
+    }
+  }
+
+// var cardData = window.adverts[0];
+  // window.card =
+  function renderCard(cardData) {
     cardElement.querySelector('.popup__avatar').src = cardData.author.avatar;
     cardElement.querySelector('.popup__title').textContent =
       cardData.offer.title;
@@ -121,5 +130,10 @@
     }
 
     map.insertBefore(cardElement, map.querySelector('map__filters-container'));
+  }
+
+  window.card = {
+    renderCard: renderCard,
+    removeCard: removeCard
   };
 })();
