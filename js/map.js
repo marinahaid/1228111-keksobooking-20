@@ -6,44 +6,44 @@
   var PIN_WIDTH = 50;
   var PIN_HEIGHT = 70;
 
-  var form = document.querySelector(".ad-form");
-  var allfieldsets = form.querySelectorAll("fieldset");
-  var map = document.querySelector(".map");
+  var form = document.querySelector('.ad-form');
+  var allfieldsets = form.querySelectorAll('fieldset');
+  var map = document.querySelector('.map');
 
-  var mapFilters = document.querySelector(".map__filters");
-  var allSelects = mapFilters.querySelectorAll("select");
-  var fieldsetmapFilters = mapFilters.querySelector("fieldset");
+  var mapFilters = document.querySelector('.map__filters');
+  var allSelects = mapFilters.querySelectorAll('select');
+  var fieldsetmapFilters = mapFilters.querySelector('fieldset');
   window.adverts = [];
 
-  var onError = function(messange) {
+  var onError = function (messange) {
     console.log(messange);
   };
 
-  var onSuccess = function(data) {
- window.adverts = data;
- activatePage()
+  var onSuccess = function (data) {
+    window.adverts = data;
+    activatePage();
   };
   function initPage() {
-    window.load(onSuccess, onError )
+    window.load(onSuccess, onError);
   }
 
 
-  //перебираем филдсеты и дизейблим
+  // перебираем филдсеты и дизейблим
   function disactivatePage() {
     for (var i = 0; i < allfieldsets.length; i++) {
       allfieldsets[i].disabled = true;
     }
-    //делаем недоступными фильтры формы
+    // делаем недоступными фильтры формы
     for (var j = 0; j < allSelects.length; j++) {
       allSelects[j].disabled = true;
     }
     fieldsetmapFilters.disabled = true;
   }
 
-  //вызов функцию, кот делает фильтры и фиелдсеты неактивными
+  // вызов функцию, кот делает фильтры и фиелдсеты неактивными
   disactivatePage();
 
-  //вызываем функцию, кот делает стр активной
+  // вызываем функцию, кот делает стр активной
   function activatePage() {
     for (var i = 0; i < allfieldsets.length; i++) {
       allfieldsets[i].disabled = false;
@@ -51,14 +51,16 @@
 
     for (var j = 0; j < allSelects.length; j++) {
       allSelects[j].disabled = false;
-    }
 
+    }
     fieldsetmapFilters.disabled = false;
-    map.classList.remove("map--faded");
-    form.classList.remove("ad-form--disabled");
+    map.classList.remove('map--faded');
+    form.classList.remove('ad-form--disabled');
     drawPins();
     setAddress();
+    window.card(window.adverts[0]);
   }
+
 
   var pinList = document.querySelector('.map__pins');
   function drawPins() {
