@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+/* (function () {
 var TITLE_NAMES = ['Большая уютная квартира', 'Маленькая неутная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгалао по колено в воде']
 var OBJECT_TYPE = ['palace', 'flat', 'house', 'bungalo'];
 var OBJECT_PRICE = ['any', 'middle', 'low', 'high'];
@@ -57,4 +57,4 @@ filterFeatureElement.addEventListener.addEventListener('click', function() {
   this.
 })
 
-})();
+})();*/
