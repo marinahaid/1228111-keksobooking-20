@@ -58,7 +58,7 @@
     form.classList.remove('ad-form--disabled');
     drawPins();
     setAddress();
-    window.card(window.adverts[0]);
+    window.card(window.adverts[4]);
   }
 
 
