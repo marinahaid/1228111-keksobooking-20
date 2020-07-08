@@ -14,7 +14,7 @@
     }
   }
 
-// var cardData = window.adverts[0];
+  // var cardData = window.adverts[0];
   // window.card =
   function renderCard(cardData) {
     cardElement.querySelector('.popup__avatar').src = cardData.author.avatar;
@@ -113,9 +113,10 @@
     // Для фото
     cardElement.querySelector('.popup__photos').innerHTML = '';
     if (cardData.offer.photos.length === 0) {
-      cardData.offer.photos.querySelector('.popup__photos').style.display =
+      cardElement.offer.photos.querySelector('.popup__photos').style.display =
         'none';
     } else {
+      cardElement.querySelector('.popup__photos').style.display = '';
       var fragment = document.createDocumentFragment();
       for (var j = 1; j < cardData.offer.photos.length; j++) {
         var newPhoto = document.createElement('img');

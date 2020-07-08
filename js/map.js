@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 (function () {
 
@@ -13,6 +13,7 @@
   var mapFilters = document.querySelector('.map__filters');
   var allSelects = mapFilters.querySelectorAll('select');
   var fieldsetmapFilters = mapFilters.querySelector('fieldset');
+
   window.adverts = [];
 
   var onError = function (messange) {
@@ -92,4 +93,10 @@
       initPage();
     }
   });
+  function removeAllPins() {
+    var allPins = map.querySelectorAll('.map__pin:not(.map__pin--map)');
+    for (var i = 0; i < allPins.length; i++) {
+      allPins[i].remove();
+    }
+  }
 })();
