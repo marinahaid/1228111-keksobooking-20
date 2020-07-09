@@ -22,29 +22,27 @@
 
   var onSuccess = function (data) {
     window.adverts = data;
-    activatePage();
   };
+
+  activatePage();
   function initPage() {
     window.load(onSuccess, onError);
   }
 
 
-  // перебираем филдсеты и дизейблим
   function disactivatePage() {
     for (var i = 0; i < allfieldsets.length; i++) {
       allfieldsets[i].disabled = true;
     }
-    // делаем недоступными фильтры формы
+
     for (var j = 0; j < allSelects.length; j++) {
       allSelects[j].disabled = true;
     }
     fieldsetmapFilters.disabled = true;
   }
 
-  // вызов функцию, кот делает фильтры и фиелдсеты неактивными
   disactivatePage();
-
-  // вызываем функцию, кот делает стр активной
+}
   function activatePage() {
     for (var i = 0; i < allfieldsets.length; i++) {
       allfieldsets[i].disabled = false;
@@ -59,11 +57,11 @@
     form.classList.remove('ad-form--disabled');
     drawPins();
     setAddress();
+
     window.card(window.adverts[0]);
   }
 
 
-  var pinList = document.querySelector('.map__pins');
   function drawPins() {
     var fragment = document.createDocumentFragment();
     for (var j = 0; j < window.adverts.length; j++) {
@@ -99,4 +97,7 @@
       allPins[i].remove();
     }
   }
+  removeAllPins();
+
+
 })();

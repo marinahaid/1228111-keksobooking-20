@@ -14,8 +14,6 @@
     }
   }
 
-  // var cardData = window.adverts[0];
-  // window.card =
   function renderCard(cardData) {
     cardElement.querySelector('.popup__avatar').src = cardData.author.avatar;
     cardElement.querySelector('.popup__title').textContent =
@@ -24,22 +22,6 @@
       cardData.offer.address;
     cardElement.querySelector('.popup__text--price').textContent =
       cardData.offer.price + '₽/ночь';
-
-    /* if (cardData.offer.type === 'house') {
-      cardElement.querySelector('popup__type').textContent = 'Дом';
-    }
-
-    if (cardData.offer.type === 'flat') {
-      cardElement.querySelector('popup__type').textContent = 'Квартира';
-    }
-
-    if (cardData.offer.type === 'palace') {
-      cardElement.querySelector('popup__type').textContent = 'Дворец';
-    }
-
-    if (cardData.offer.type === 'bungalo') {
-      cardElement.querySelector('popup__type').textContent = 'Бунгало';
-    } */
 
     switch (cardData.offer.type) {
       case 'house':
@@ -59,43 +41,15 @@
         break;
     }
 
-    // Для комнат и гостей
     cardElement.querySelector('.popup__text--capacity').textContent =
       cardData.offer.rooms + 'комната для ' + cardData.offer.guests + ' гостей';
-    /* if (cardData.offer.rooms === '1') {
-       cardElement.querySelector('.popup__text--capacity').textContent = 'для 1 гостя';
-     }
 
-     if (cardData.offer.rooms === '2') {
-       cardElement.querySelector('.popup__text--capacity').textContent = 'для 2 гостей';
-     }
-
-     if (cardData.offer.rooms === '3') {
-       cardElement.querySelector('.popup__text--capacity').textContent = 'для 3 гостей';
-     }
-
-   if (cardData.offer.guests === '1') {
-       cardElement.querySelector('.popup__text--capacity').textContent = '1 комната';
-     } else if {
-       cardData.offer.rooms.querySelector('.popup__text--capacity').textContent = 'для 1 гостя';
-     }
-
-   /* if (cardData.offer.guests === '2') {
-     cardElement.querySelector('.popup__text--capacity').textContent = '2 комнаты';
-   }
-
-   if (cardData.offer.guests === '3') {
-     cardElement.querySelector('.popup__text--capacity').textContent = '3 комнаты';
-   } */
-
-    // Для заезда.выезда
     cardElement.querySelector('.popup__text--time').textContent =
       'Заезд после ' +
       cardData.offer.checkin +
       ' выезд до ' +
       cardData.offer.checkout;
 
-    // Для удобств
     cardElement.querySelector('.popup__features').innerHTML = '';
     for (var i = 0; i < cardData.offer.features.length; i++) {
       var newItemFeature = document.createElement('li');
@@ -106,11 +60,9 @@
       cardElement.querySelector('.popup__features').appendChild(newItemFeature);
     }
 
-    // Описание
     cardElement.querySelector('.popup__description').textContent =
       cardData.offer.description;
 
-    // Для фото
     cardElement.querySelector('.popup__photos').innerHTML = '';
     if (cardData.offer.photos.length === 0) {
       cardElement.offer.photos.querySelector('.popup__photos').style.display =
