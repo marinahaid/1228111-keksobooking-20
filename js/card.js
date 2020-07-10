@@ -65,7 +65,7 @@
 
     cardElement.querySelector('.popup__photos').innerHTML = '';
     if (cardData.offer.photos.length === 0) {
-      cardElement.offer.photos.querySelector('.popup__photos').style.display =
+      cardElement.querySelector('.popup__photos').style.display =
         'none';
     } else {
       cardElement.querySelector('.popup__photos').style.display = '';
