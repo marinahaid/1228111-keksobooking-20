@@ -1,10 +1,10 @@
 'use strict';
 
 (function () {
-
-  var mapPin = document.querySelector('.map__pin--main');
   var PIN_WIDTH = 50;
   var PIN_HEIGHT = 70;
+  var mapPin = document.querySelector('.map__pin--main');
+  var pinList = document.querySelector('.map__pins');
 
   var form = document.querySelector('.ad-form');
   var allfieldsets = form.querySelectorAll('fieldset');
@@ -22,9 +22,9 @@
 
   var onSuccess = function (data) {
     window.adverts = data;
+    activatePage();
   };
 
-  activatePage();
   function initPage() {
     window.load(onSuccess, onError);
   }
@@ -42,7 +42,7 @@
   }
 
   disactivatePage();
-}
+
   function activatePage() {
     for (var i = 0; i < allfieldsets.length; i++) {
       allfieldsets[i].disabled = false;
@@ -97,7 +97,4 @@
       allPins[i].remove();
     }
   }
-  removeAllPins();
-
-
 })();
