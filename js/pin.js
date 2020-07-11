@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  //создаем переменную на основе шаблона
+
   var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
   function renderPin(ad) {
