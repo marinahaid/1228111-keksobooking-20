@@ -63,13 +63,18 @@
     drawPins();
     setAddress();
 
-   // window.card(window.adverts[0]);
+    // window.card(window.adverts[0]);
   }
 
 
   function drawPins() {
+    var countAd = 5;
+    window.adverts.length = 20;
+    if (window.adverts.length < 5) {
+      countAd = window.adverts.length;
+    }
     var fragment = document.createDocumentFragment();
-    for (var j = 0; j < window.adverts.length; j++) {
+    for (var j = 0; j < countAd; j++) {
       var ad1 = window.adverts[j];
       var pin = window.pin.renderPin(ad1);
       fragment.appendChild(pin);
