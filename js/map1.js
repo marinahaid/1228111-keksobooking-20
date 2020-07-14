@@ -69,7 +69,6 @@
 
   function drawPins() {
     var countAd = 5;
-    window.adverts.length = 20;
     if (window.adverts.length < 5) {
       countAd = window.adverts.length;
     }
@@ -90,7 +89,6 @@
     address.value = xCoord + ',' + yCoord;
   }
 
-
   mapPin.addEventListener('mousedown', function () {
     initPage();
   });
@@ -101,6 +99,14 @@
       initPage();
     }
 
+    mapPin.addEventListener('click', function () {
+      initPage();
+    });
+ var onMouseMove = function (moveEvt) {
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+ }
   });
   function removeAllPins() {
     var allPins = map.querySelectorAll('.map__pin:not(.map__pin--main)');

@@ -26,11 +26,21 @@
     window.card.removeCard();
 
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < filteredAd.length; i++) {
-      var currentAd = filteredAd[i];
-      fragment.appendChild(window.pin.renderPin(currentAd));
+    // for (var i = 0; i < filteredAd.length; i++) {
 
+    var pinsCount = 5;
+    if (filteredAd.length < 5) {
+      pinsCount = filteredAd.length;
     }
+    for (var i = 0; i < pinsCount; i++) {
+      var currentAd = filteredAd[i];
+
+      fragment.appendChild(window.pin.renderPin(currentAd));
+    }
+
     pinList.appendChild(fragment);
+
   });
+
+
 })();
