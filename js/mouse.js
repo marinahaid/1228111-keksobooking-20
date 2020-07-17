@@ -1,4 +1,4 @@
-'use strict';
+/* 'use strict';
 
 (function () {
 
@@ -49,4 +49,4 @@
     document.addEventListener('mouseup', onMouseUp);
   });
 
-})();
+})(); */
