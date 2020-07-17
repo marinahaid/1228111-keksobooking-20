@@ -157,8 +157,9 @@
       if (mapPinCoords.y < minY) {
         mapPinCoords.y = minY;
       }
-      mapPin.style.top = (mapPin.offsetTop - shift.y) + 'px';
-      mapPin.style.left = (mapPin.offsetLeft - shift.x) + 'px';
+      mapPin.style.top = (mapPinCoords.y) + 'px';
+      mapPin.style.left = (mapPinCoords.x) + 'px';
+      maxX = map.offsetWidth - PIN_WIDTH;
       setAddress();
     };
 
