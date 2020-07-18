@@ -2,11 +2,8 @@
 
 (function () {
   var URL = 'https://javascript.pages.academy/keksobooking/data';
-  window.load = function (data, onSuccess, onError) {
+  window.load = function (onSuccess, onError) {
     var xhr = new XMLHttpRequest();
-
-
-    var form = document.querySelector('.ad-form');
 
     xhr.responseType = 'json';
 
@@ -15,6 +12,7 @@
         onSuccess(xhr.response);
       } else {
         onError('Cтатус ответа: ' + xhr.status + ' ' + xhr.statusText);
+        console.log(xhr.status + '' + xhr.status.Text);
       }
     });
 
@@ -30,19 +28,6 @@
 
     xhr.open('GET', URL);
     xhr.send();
-
-
-    xhr.open('POST', URL);
-    xhr.send(data);
-
-
-
-  form.addEventListener('submit', function (evt) {
-window.upload(new FormData(form), function (response) {
-  classList.add('hidden')
-});
-evt.preventDefault ();
-  });
-};
+  };
 })();
 

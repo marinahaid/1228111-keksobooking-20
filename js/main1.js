@@ -1,8 +1,5 @@
 'use strict';
 (function () {
-
-  var erButtonTemplate = document.querySelector('#error').content.querySelector('.error__button');
-
   var onError = function (message) {
     console.error(message);
   };
