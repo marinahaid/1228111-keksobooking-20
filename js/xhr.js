@@ -37,9 +37,7 @@
 
 
 
-  form.addEventListener('submit', function (evt) {
-window.upload(new FormData(form), function (response) {
-  classList.add('hidden')
+
 });
 evt.preventDefault ();
   });

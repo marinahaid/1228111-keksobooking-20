@@ -40,7 +40,7 @@
   };
 
   function initPage() {
-    window.load(onSuccess, onError);
+    window.xhr.load(onSuccess, onError);
   }
 
 
