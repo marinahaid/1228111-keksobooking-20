@@ -97,9 +97,9 @@ function showErrorMessage () {
   var errorMsg = template.cloneNode(true);
 
   var template = document.querySelector('.error__button').content;
- var errorBut = template.cloneNode(true);
+ var errorMsg = template.cloneNode(true);
   document.querySelector('main').appendChild(errorMsg);
-  document.querySelector('main').appendChild(errorBut);
+
   document.addEventListener('click', showErrorMessage);
   document.addEventListener('keydown', onkeydownEsc);
 }
