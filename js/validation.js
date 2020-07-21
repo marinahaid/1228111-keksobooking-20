@@ -103,11 +103,9 @@
 
     errorButton.addEventListener('click', onclickErrorButton);
 
-    document.addEventListener('click', showErrorMessage);
+
     document.addEventListener('keydown', onkeydownEscErrorMsg);
   }
-
-
 
   function onclickErrorButton() {
     var errorMsg = main.querySelector('.error');
@@ -117,7 +115,7 @@
     document.removeEventListener('keydown', onkeydownEsc);
     document.removeEventListener('click', onclickErrorButton);
   }
-  function onkeydownEsc(evt) {
+  function onkeydownEscErrorMsg(evt) {
     if (evt.key === 'Escape') {
       onclickErrorButton();
     }
