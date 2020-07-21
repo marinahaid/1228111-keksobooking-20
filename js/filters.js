@@ -41,6 +41,7 @@
     pinList.appendChild(fragment);
 
   });
-
-
+window.filters = {
+  removeAllPins: removeAllPins
+}
 })();

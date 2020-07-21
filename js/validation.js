@@ -69,54 +69,81 @@
     window.xhr.upload(new FormData(form),*/
 
 
-var main =  document.querySelector('.main');
-function onclickSuccessMsg () {
-  var successMsg = main.querySelector('success');
-  if (successMsg) {
-    successMsg.remove();
-  }
+  var main = document.querySelector('.main');
+
+  function onclickSuccessMsg() {
+    var successMsg = main.querySelector('.success');
+    if (successMsg) {
+      successMsg.remove();
+    }
     document.removeEventListener('keydown', onkeydownEsc);
     document.removeEventListener('click', onclickSuccessMsg);
   }
-function onkeydownEsc (evt) {
-  if (evt.key === 'Escape'){
-    onclickSuccessMsg ();
-  }
-}
-
-function showSuccessMessage () {
-  var template = document.querySelector('#success').content;
-  var successMsg = template.cloneNode(true);
-  document.querySelector('main').appendChild(successMsg);
-  document.addEventListener('click', onclickSuccessMsg);
-  document.addEventListener('keydown', onkeydownEsc);
-}
-
-function showErrorMessage () {
-  var template = document.querySelector('#error').content;
-  var errorMsg = template.cloneNode(true);
-
-  var template = document.querySelector('.error__button').content;
- var errorMsg = template.cloneNode(true);
-  document.querySelector('main').appendChild(errorMsg);
-
-  document.addEventListener('click', showErrorMessage);
-  document.addEventListener('keydown', onkeydownEsc);
-}
-
-     function onSuccess() {
-      form.reset();
-      showSuccessMessage();
+  function onkeydownEsc(evt) {
+    if (evt.key === 'Escape') {
+      onclickSuccessMsg();
     }
-    function onError() {
-        showErrorMessage();
-      }
+  }
 
-    form.addEventListener('submit', function (evt) {
-        evt.preventDefault();
-        window.xhr.upload(new FormData(form), onSuccess, onError)
-      });
-  })();
+  function showSuccessMessage() {
+    var template = document.querySelector('#success').content;
+    var successMsg = template.cloneNode(true);
+    document.querySelector('main').appendChild(successMsg);
+    document.addEventListener('click', onclickSuccessMsg);
+    document.addEventListener('keydown', onkeydownEsc);
+  }
+
+  function showErrorMessage() {
+    var template = document.querySelector('#error').content;
+    var errorMsg = template.cloneNode(true);
+    var template = document.querySelector('.error__button').content;
+    document.querySelector('main').appendChild(errorMsg);
+
+    var errorButton = main.querySelector('.error__button')
+
+    errorButton.addEventListener('click', onclickErrorButton);
+
+    document.addEventListener('click', showErrorMessage);
+    document.addEventListener('keydown', onkeydownEscErrorMsg);
+  }
+
+
+
+  function onclickErrorButton() {
+    var errorMsg = main.querySelector('.error');
+    if (errorMsg) {
+      errorMsg.remove();
+    }
+    document.removeEventListener('keydown', onkeydownEsc);
+    document.removeEventListener('click', onclickErrorButton);
+  }
+  function onkeydownEsc(evt) {
+    if (evt.key === 'Escape') {
+      onclickErrorButton();
+    }
+  }
+
+  function onSuccess() {
+    form.reset();
+    showSuccessMessage();
+    window.map.disactivatePage();
+    window.filters.removeAllPins();
+    var mapPin = document.querySelector('.map__pin--main');
+    mapPin.style.top = window.map.mapPinInitCoords.y + 'px';
+    mapPin.style.left = window.map.mapPinInitCoords.x + 'px';
+
+    window.map.setAddress();
+
+  }
+  function onError() {
+    showErrorMessage();
+  }
+
+  form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.xhr.upload(new FormData(form), onSuccess, onError)
+  });
+})();
 
 
 

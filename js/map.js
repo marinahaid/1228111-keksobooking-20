@@ -4,9 +4,14 @@
   var PIN_WIDTH = 50;
   var PIN_HEIGHT = 70;
 
+
   var map = document.querySelector('.map');
   var mapPin = document.querySelector('.map__pin--main');
 
+  var mapPinInitCoords = {
+    x: mapPin.offsetLeft,
+    y: mapPin.offsetTop
+  }
 
   var form = document.querySelector('.ad-form');
   var allfieldsets = form.querySelectorAll('fieldset');
@@ -20,7 +25,6 @@
 
 
 
-  var map = document.querySelector('.map');
   var minX = 0;
   var maxX = map.offsetWidth;
   var minY = 130;
@@ -49,10 +53,10 @@
       allfieldsets[i].disabled = true;
     }
 
-    for (var j = 0; j < allSelects.length; j++) {
-      allSelects[j].disabled = true;
-    }
+
     fieldsetmapFilters.disabled = true;
+    map.classList.add('.map__faded');
+    form.classList.add('.ad-forn--disabled');
     mapPin.addEventListener('mousedown', firstClickMainPin);
   }
 
@@ -174,5 +178,15 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+
+  window.map = {
+    disactivatePage: disactivatePage
+  }
+
+window.map = {
+  disactivatePage: disactivatePage,
+  mapPinInitCoords: mapPinInitCoords,
+  setAddress: setAddress
+}
 
 })();
