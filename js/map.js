@@ -4,9 +4,14 @@
   var PIN_WIDTH = 50;
   var PIN_HEIGHT = 70;
 
+
   var map = document.querySelector('.map');
   var mapPin = document.querySelector('.map__pin--main');
 
+  var mapPinInitCoords = {
+    x: mapPin.offsetLeft,
+    y: mapPin.offsetTop
+  }
 
   var form = document.querySelector('.ad-form');
   var allfieldsets = form.querySelectorAll('fieldset');
@@ -20,7 +25,6 @@
 
 
 
-  var map = document.querySelector('.map');
   var minX = 0;
   var maxX = map.offsetWidth;
   var minY = 130;
@@ -40,7 +44,7 @@
   };
 
   function initPage() {
-    window.load(onSuccess, onError);
+    window.xhr.load(onSuccess, onError);
   }
 
 
@@ -49,10 +53,10 @@
       allfieldsets[i].disabled = true;
     }
 
-    for (var j = 0; j < allSelects.length; j++) {
-      allSelects[j].disabled = true;
-    }
+
     fieldsetmapFilters.disabled = true;
+    map.classList.add('.map__faded');
+    form.classList.add('.ad-forn--disabled');
     mapPin.addEventListener('mousedown', firstClickMainPin);
   }
 
@@ -76,7 +80,6 @@
     drawPins();
     setAddress();
     mapPin.removeEventListener('mousedown', firstClickMainPin);
-    // window.card(window.adverts[0]);
   }
 
 
@@ -175,39 +178,15 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
-  /*var map = document.querySelector('.map');
-  var minX = 0;
-  var maxX = map.offsetWidth;
-  var minY = 130;
-  var maxY = 630;*/
 
-  /* var mapPinCoords = {
-     x: mapPin.offsetLeft - shift.x,
-     y: mapPin.offsetTop - shift.y
-   };
-  /* if (mapPinCoords.x > maxX) {
-     mapPinCoords.x = maxX;
-   }
+  window.map = {
+    disactivatePage: disactivatePage
+  }
 
-   if (mapPinCoords.y > maxY) {
-     mapPinCoords.y = maxY;
-   }
-
-   if (mapPinCoords.x < minX) {
-     mapPinCoords.x = minX;
-   }
-
-   if (mapPinCoords.y < minY) {
-     mapPinCoords.y = minY;
-   } */
-  //mapPin.style.left = (mapPinCoords.x) + 'px';
-  // mapPin.style.top = (mapPinCoords.y) + 'px';
-
-  /* function () {
-     maxX = map.offsetWidth - PIN_WIDTH;
-     maxY = map.offsetHeight - PIN_HEIGHT;
-   }
-    ();*/
-
+window.map = {
+  disactivatePage: disactivatePage,
+  mapPinInitCoords: mapPinInitCoords,
+  setAddress: setAddress
+}
 
 })();
