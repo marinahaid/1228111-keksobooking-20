@@ -69,7 +69,7 @@
     window.xhr.upload(new FormData(form),*/
 
 
-  var main = document.querySelector('.main');
+  var main = document.querySelector('main');
 
   function onclickSuccessMsg() {
     var successMsg = main.querySelector('.success');
