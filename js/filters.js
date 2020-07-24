@@ -44,4 +44,18 @@
 window.filters = {
   removeAllPins: removeAllPins
 }
+
+
+
+
+mapPin.addEventListener('click', function () {
+  var card = map.querySelector('.map__card');
+}
+var mapFilters = document.querySelector('.map__filters');
+
+var getRandomElement = function (array) {
+  var RandomElementIndex = Math.floor(Math.random () * array.length);
+  return array[RandomElementIndex];
+};
+
 })();

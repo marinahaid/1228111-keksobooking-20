@@ -31,10 +31,7 @@
   var maxY = 630;
 
 
-
-
-
-  var onError = function (messange) {
+var onError = function (messange) {
     console.log(messange);
   };
 
