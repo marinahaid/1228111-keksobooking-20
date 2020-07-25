@@ -60,6 +60,10 @@ var onError = function (messange) {
   disactivatePage();
 
   function activatePage() {
+    form.querySelector('#price').min = 1000;
+    form.querySelector('#price').placeholder = '1000';
+    form.querySelector('#capacity').value = '1';
+
     for (var i = 0; i < allfieldsets.length; i++) {
       allfieldsets[i].disabled = false;
     }

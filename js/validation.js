@@ -122,7 +122,12 @@
   }
 
   function onSuccess() {
-    form.reset();
+   // reset.addEventListener('click', funktion (evt) {
+      evt.preventDefault ();
+     form.reset();
+   map.classList.add('map--faded');
+   form.classList.add('ad-form--disabled');
+
     showSuccessMessage();
     window.map.disactivatePage();
     window.filters.removeAllPins();
@@ -132,7 +137,35 @@
 
     window.map.setAddress();
 
+    var cardOpened = map.querySelector('.map__card');
+    if (cardOpened) {
+      window.card.removeCard ();
+    }
   }
+
+
+
+    reset.addEventListener('click', function (evt) {
+       evt.preventDefault ();
+      form.reset();
+    map.classList.add('map--faded');
+    form.classList.add('ad-form--disabled');
+
+
+     window.map.disactivatePage();
+     window.filters.removeAllPins();
+     var mapPin = document.querySelector('.map__pin--main');
+     mapPin.style.top = window.map.mapPinInitCoords.y + 'px';
+     mapPin.style.left = window.map.mapPinInitCoords.x + 'px';
+
+     window.map.setAddress();
+
+     var cardOpened = map.querySelector('.map__card');
+     if (cardOpened) {
+       window.card.removeCard ();
+     }
+   });
+
   function onError() {
     showErrorMessage();
   }
@@ -141,6 +174,51 @@
     evt.preventDefault();
     window.xhr.upload(new FormData(form), onSuccess, onError)
   });
+
+
+
+  var timeIn = document.querySelector('#timein');
+  var timeOut = document.querySelector('#timeout');
+
+  timeIn.addEventListener('change', function () {
+    timeOut.value = timeIn.value;
+  });
+
+  timeOut.addEventListener('change', function () {
+    timeIn.value = timeOut.value;
+  });
+
+  var type = document.querySelector('#type');
+  var price = document.querySelector('#price');
+  type.addEventListener('change', function () {
+
+
+
+    switch (type.value) {
+
+      case 'bungalo':
+        price.placeholder = '0';
+        price.min = 0;
+        break;
+
+      case 'flat':
+        price.placeholder = '1000';
+        price.min = 1000;
+        break;
+
+      case 'house':
+        price.placeholder = '5000';
+        price.min = 5000;
+        break;
+
+      case 'palace':
+        price.placeholder = '10000';
+        price.min = 10000;
+        break;
+
+    }
+  });
+
 })();
 
 

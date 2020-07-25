@@ -15,7 +15,7 @@
   }
 
   function renderCard(cardData) {
-    cardElement.querySelector('.popup__avatar').src = cardData.author.avatar;
+  cardElement.querySelector('.popup__avatar').src = cardData.author.avatar;
     cardElement.querySelector('.popup__title').textContent =
       cardData.offer.title;
     cardElement.querySelector('.popup__text--address').textContent =
@@ -88,5 +88,16 @@
   window.card = {
     renderCard: renderCard,
     removeCard: removeCard
-  };
+
+
+
+   var popupClose = document.querySelector('.popup__close');
+    popupClose.addEventListener('click', function () {
+    document.addEventListener('keydown', onkeydownEsc);
+    if (popupClose) {
+    removepopupClose();
+    }
+    });
+};
+
 })();
