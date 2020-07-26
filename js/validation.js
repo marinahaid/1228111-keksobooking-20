@@ -1,4 +1,5 @@
 'use strict';
+
 (function () {
   var map = document.querySelector('.map');
   var form = document.querySelector('.ad-form');
@@ -159,7 +160,7 @@
 
   form.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    window.xhr.upload(new FormData(form), onSuccess, onError)
+    window.xhr.upload(new FormData(form), onSuccess, onError);
   });
 
   var timeIn = document.querySelector('#timein');

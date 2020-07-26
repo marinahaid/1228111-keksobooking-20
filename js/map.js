@@ -40,7 +40,7 @@
     node.style.boxShadow = '0 0 2px 2px #ff6547';
     node.textContent = message;
     document.body.insertAdjacentElement('afterbegin', node);
-  };
+  }
 
   var onSuccess = function (data) {
     window.adverts = data;
