@@ -99,7 +99,7 @@
 
     function onkeydownEscPopupClose(evt) {
       if (evt.key === 'Escape') {
-        onpopupCloseClick ();
+        onpopupCloseClick();
       }
     }
   }

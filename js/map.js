@@ -3,20 +3,15 @@
 (function () {
   var PIN_WIDTH = 50;
   var PIN_HEIGHT = 70;
-
-
   var map = document.querySelector('.map');
   var mapPin = document.querySelector('.map__pin--main');
-
   var mapPinInitCoords = {
     x: mapPin.offsetLeft,
     y: mapPin.offsetTop
-  }
+  };
 
   var form = document.querySelector('.ad-form');
   var allfieldsets = form.querySelectorAll('fieldset');
-  var map = document.querySelector('.map');
-
   var mapFilters = document.querySelector('.map__filters');
   var allSelects = mapFilters.querySelectorAll('select');
   var fieldsetmapFilters = mapFilters.querySelector('fieldset');
@@ -27,8 +22,6 @@
   var maxX = map.offsetWidth;
   var minY = 130;
   var maxY = 630;
-
-
   var onError = function (messange) {
     console.log(messange);
   };
@@ -42,12 +35,10 @@
     window.xhr.load(onSuccess, onError);
   }
 
-
   function disactivatePage() {
     for (var i = 0; i < allfieldsets.length; i++) {
       allfieldsets[i].disabled = true;
     }
-
 
     fieldsetmapFilters.disabled = true;
     map.classList.add('.map__faded');
@@ -73,11 +64,9 @@
 
     for (var j = 0; j < allSelects.length; j++) {
       allSelects[j].disabled = false;
-
     }
 
     fieldsetmapFilters.disabled = false;
-
     map.classList.remove('map--faded');
     form.classList.remove('ad-form--disabled');
 
@@ -85,7 +74,6 @@
     setAddress();
     mapPin.removeEventListener('mousedown', firstClickMainPin);
   }
-
 
   function drawPins() {
     var countAd = 5;
@@ -103,7 +91,6 @@
   }
 
   function setAddress() {
-
     var address = form.querySelector('#address');
     var xCoord = mapPin.offsetLeft + PIN_WIDTH / 2;
     var yCoord = mapPin.offsetTop + PIN_HEIGHT / 2;
@@ -114,18 +101,15 @@
     initPage();
   }
   mapPin.addEventListener('mousedown', firstClickMainPin);
-
   mapPin.addEventListener('keydown', function (evt) {
     evt.preventDefault();
     if (evt.key === 'Enter') {
       initPage();
     }
-
   });
 
   mapPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
-
     var startCoords = {
       x: evt.clientX,
       y: evt.clientY
@@ -169,9 +153,6 @@
       maxX = map.offsetWidth - PIN_WIDTH;
       setAddress();
     };
-
-
-
     var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
 
@@ -185,12 +166,12 @@
 
   window.map = {
     disactivatePage: disactivatePage
-  }
+  };
 
   window.map = {
     disactivatePage: disactivatePage,
     mapPinInitCoords: mapPinInitCoords,
     setAddress: setAddress
-  }
+  };
 
 })();

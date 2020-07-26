@@ -13,7 +13,6 @@
 
   // Форма фильтра
   var filters = document.querySelector('.map__filters');
-
   // Фильтр по типу жилья
   var houseType = filters.querySelector('#housing-type');
   // Фильтр по цене жилья
@@ -25,10 +24,8 @@
   // Фильтр по особенностям помещения в виде массива
   var filterFeatures = Array.from(filters.querySelectorAll('.map__checkbox').values());
 
-
   function renderPins(ads) {
     var fragment = document.createDocumentFragment();
-
     var pinsCount = 5;
     if (ads.length < 5) {
       pinsCount = ads.length;
@@ -38,20 +35,16 @@
       fragment.appendChild(window.pin.renderPin(currentAd));
     }
     pinList.appendChild(fragment);
-
   }
-
   var filteredAd = [];
 
   function allFiltersCheck() {
     filteredAd = window.adverts;
-
     checkHouseType(filteredAd);
     checkPrice(filteredAd);
     checkGuests(filteredAd);
     checkRooms(filteredAd);
     checkFeatures(filteredAd);
-
     removeAllPins();
     window.card.removeCard();
     renderPins(filteredAd);
@@ -79,7 +72,6 @@
       });
     }
   }
-
   function checkRooms(arr) {
     if (housingRooms.value !== 'any') {
       filteredAd = arr.filter(function (ad) {
@@ -94,7 +86,6 @@
       });
     }
   }
-
   function checkPrice(arr) {
     if (housingPrice.value !== 'any') {
       switch (housingPrice.value) {
@@ -122,5 +113,4 @@
   window.filters = {
     removeAllPins: removeAllPins
   };
-
 })();
