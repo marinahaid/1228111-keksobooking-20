@@ -15,7 +15,7 @@
   }
 
   function renderCard(cardData) {
-  cardElement.querySelector('.popup__avatar').src = cardData.author.avatar;
+    cardElement.querySelector('.popup__avatar').src = cardData.author.avatar;
     cardElement.querySelector('.popup__title').textContent =
       cardData.offer.title;
     cardElement.querySelector('.popup__text--address').textContent =
@@ -83,21 +83,31 @@
     }
 
     map.insertBefore(cardElement, map.querySelector('map__filters-container'));
+
+    var popupClose = document.querySelector('.popup__close');
+    popupClose.addEventListener('click', onpopupCloseClick);
+    document.addEventListener('keydown', onkeydownEscPopupClose);
+
+    function onpopupCloseClick() {
+      removeCard();
+      var activePin = map.querySelector('.map__pin--active');
+      if (activePin) {
+        activePin.classList.remove('map__pin--active');
+      }
+      document.removeEventListener('keydown', onkeydownEscPopupClose);
+    }
+
+    function onkeydownEscPopupClose(evt) {
+      if (evt.key === 'Escape') {
+        onpopupCloseClick ();
+      }
+    }
   }
 
   window.card = {
     renderCard: renderCard,
     removeCard: removeCard
 
-
-
-   var popupClose = document.querySelector('.popup__close');
-    popupClose.addEventListener('click', function () {
-    document.addEventListener('keydown', onkeydownEsc);
-    if (popupClose) {
-    removepopupClose();
-    }
-    });
-};
+  };
 
 })();

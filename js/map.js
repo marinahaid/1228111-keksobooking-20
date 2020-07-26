@@ -23,15 +23,13 @@
   var pinList = document.querySelector('.map__pins');
   window.adverts = [];
 
-
-
   var minX = 0;
   var maxX = map.offsetWidth;
   var minY = 130;
   var maxY = 630;
 
 
-var onError = function (messange) {
+  var onError = function (messange) {
     console.log(messange);
   };
 
@@ -55,6 +53,11 @@ var onError = function (messange) {
     map.classList.add('.map__faded');
     form.classList.add('.ad-forn--disabled');
     mapPin.addEventListener('mousedown', firstClickMainPin);
+
+    var allCheckedInputs = fieldsetmapFilters.querySelectorAll('input');
+    allCheckedInputs.forEach(function (item) {
+      item.checked = false;
+    });
   }
 
   disactivatePage();
@@ -184,10 +187,10 @@ var onError = function (messange) {
     disactivatePage: disactivatePage
   }
 
-window.map = {
-  disactivatePage: disactivatePage,
-  mapPinInitCoords: mapPinInitCoords,
-  setAddress: setAddress
-}
+  window.map = {
+    disactivatePage: disactivatePage,
+    mapPinInitCoords: mapPinInitCoords,
+    setAddress: setAddress
+  }
 
 })();

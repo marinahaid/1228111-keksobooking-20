@@ -1,7 +1,9 @@
 'use strict';
 
 (function () {
+  var map = document.querySelector('.map');
   var form = document.querySelector('.ad-form');
+  var reset = form.querySelector('.ad-form__reset');
   var guests = document.querySelector('#capacity');
   var type = form.querySelector('#type');
   var price = form.querySelector('#price');
@@ -65,10 +67,6 @@
     checkNumGuests(roomNumber);
   });
 
-  /* form.addEventListener('submit', function (evt) {
-    window.xhr.upload(new FormData(form),*/
-
-
   var main = document.querySelector('main');
 
   function onclickSuccessMsg() {
@@ -122,11 +120,11 @@
   }
 
   function onSuccess() {
-   // reset.addEventListener('click', funktion (evt) {
-      evt.preventDefault ();
-     form.reset();
-   map.classList.add('map--faded');
-   form.classList.add('ad-form--disabled');
+    // reset.addEventListener('click', funktion (evt) {
+    evt.preventDefault();
+    form.reset();
+    map.classList.add('map--faded');
+    form.classList.add('ad-form--disabled');
 
     showSuccessMessage();
     window.map.disactivatePage();
@@ -139,32 +137,30 @@
 
     var cardOpened = map.querySelector('.map__card');
     if (cardOpened) {
-      window.card.removeCard ();
+      window.card.removeCard();
     }
   }
 
-
-
-    reset.addEventListener('click', function (evt) {
-       evt.preventDefault ();
-      form.reset();
+  reset.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    form.reset();
     map.classList.add('map--faded');
     form.classList.add('ad-form--disabled');
 
 
-     window.map.disactivatePage();
-     window.filters.removeAllPins();
-     var mapPin = document.querySelector('.map__pin--main');
-     mapPin.style.top = window.map.mapPinInitCoords.y + 'px';
-     mapPin.style.left = window.map.mapPinInitCoords.x + 'px';
+    window.map.disactivatePage();
+    window.filters.removeAllPins();
+    var mapPin = document.querySelector('.map__pin--main');
+    mapPin.style.top = window.map.mapPinInitCoords.y + 'px';
+    mapPin.style.left = window.map.mapPinInitCoords.x + 'px';
 
-     window.map.setAddress();
+    window.map.setAddress();
 
-     var cardOpened = map.querySelector('.map__card');
-     if (cardOpened) {
-       window.card.removeCard ();
-     }
-   });
+    var cardOpened = map.querySelector('.map__card');
+    if (cardOpened) {
+      window.card.removeCard();
+    }
+  });
 
   function onError() {
     showErrorMessage();
@@ -174,8 +170,6 @@
     evt.preventDefault();
     window.xhr.upload(new FormData(form), onSuccess, onError)
   });
-
-
 
   var timeIn = document.querySelector('#timein');
   var timeOut = document.querySelector('#timeout');
@@ -191,8 +185,6 @@
   var type = document.querySelector('#type');
   var price = document.querySelector('#price');
   type.addEventListener('change', function () {
-
-
 
     switch (type.value) {
 
