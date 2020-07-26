@@ -93,7 +93,7 @@
     var errorMsg = template.cloneNode(true);
     document.querySelector('main').appendChild(errorMsg);
 
-    var errorButton = main.querySelector('.error__button')
+    var errorButton = main.querySelector('.error__button');
     errorButton.addEventListener('click', onclickErrorButton);
     document.addEventListener('keydown', onkeydownEscErrorMsg);
   }
@@ -174,7 +174,6 @@
   });
 
   type.addEventListener('change', function () {
-
     switch (type.value) {
       case 'bungalo':
         price.placeholder = '0';

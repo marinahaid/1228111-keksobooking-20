@@ -56,7 +56,6 @@
       newItemFeature.classList.add('popup__feature');
       newItemFeature.classList.add('popup__feature--' + cardData.offer.features[i]
       );
-
       cardElement.querySelector('.popup__features').appendChild(newItemFeature);
     }
 
@@ -103,11 +102,8 @@
       }
     }
   }
-
   window.card = {
     renderCard: renderCard,
     removeCard: removeCard
-
   };
-
 })();

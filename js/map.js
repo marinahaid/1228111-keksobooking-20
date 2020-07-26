@@ -22,8 +22,24 @@
   var maxX = map.offsetWidth;
   var minY = 130;
   var maxY = 630;
-  var onError = function (messange) {
-    console.log(messange);
+
+  function onError(message) {
+    var node = document.createElement('div');
+    node.style.zIndex = 100;
+    node.style.position = 'absolute';
+    node.style.top = '25%';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.width = '300px';
+    node.style.margin = '0 auto';
+    node.style.padding = '25px 50px';
+    node.style.fontSize = '21px';
+    node.style.textAlign = 'center';
+    node.style.color = '#ff5635';
+    node.style.backgroundColor = 'white';
+    node.style.boxShadow = '0 0 2px 2px #ff6547';
+    node.textContent = message;
+    document.body.insertAdjacentElement('afterbegin', node);
   };
 
   var onSuccess = function (data) {
