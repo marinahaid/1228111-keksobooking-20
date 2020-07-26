@@ -1,14 +1,15 @@
 'use strict';
 
 (function () {
+  var map = document.querySelector('.map');
   var form = document.querySelector('.ad-form');
+  var reset = form.querySelector('.ad-form__reset');
   var guests = document.querySelector('#capacity');
   var type = form.querySelector('#type');
   var price = form.querySelector('#price');
   var rooms = form.querySelector('#room_number');
   function checkNumGuests(room) {
     var numGuests = parseInt(guests.value, 10);
-
     guests.setCustomValidity('');
     if (room === 1) {
       if (numGuests !== 1) {
@@ -65,12 +66,7 @@
     checkNumGuests(roomNumber);
   });
 
-  /* form.addEventListener('submit', function (evt) {
-    window.xhr.upload(new FormData(form),*/
-
-
   var main = document.querySelector('main');
-
   function onclickSuccessMsg() {
     var successMsg = main.querySelector('.success');
     if (successMsg) {
@@ -96,14 +92,10 @@
   function showErrorMessage() {
     var template = document.querySelector('#error').content;
     var errorMsg = template.cloneNode(true);
-    var template = document.querySelector('.error__button').content;
     document.querySelector('main').appendChild(errorMsg);
 
-    var errorButton = main.querySelector('.error__button')
-
+    var errorButton = main.querySelector('.error__button');
     errorButton.addEventListener('click', onclickErrorButton);
-
-
     document.addEventListener('keydown', onkeydownEscErrorMsg);
   }
 
@@ -121,8 +113,12 @@
     }
   }
 
-  function onSuccess() {
+  function onSuccess(evt) {
+    evt.preventDefault();
     form.reset();
+    map.classList.add('map--faded');
+    form.classList.add('ad-form--disabled');
+
     showSuccessMessage();
     window.map.disactivatePage();
     window.filters.removeAllPins();
@@ -132,16 +128,71 @@
 
     window.map.setAddress();
 
+    var cardOpened = map.querySelector('.map__card');
+    if (cardOpened) {
+      window.card.removeCard();
+    }
   }
+
+  reset.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    form.reset();
+    map.classList.add('map--faded');
+    form.classList.add('ad-form--disabled');
+
+    window.map.disactivatePage();
+    window.filters.removeAllPins();
+    var mapPin = document.querySelector('.map__pin--main');
+    mapPin.style.top = window.map.mapPinInitCoords.y + 'px';
+    mapPin.style.left = window.map.mapPinInitCoords.x + 'px';
+
+    window.map.setAddress();
+
+    var cardOpened = map.querySelector('.map__card');
+    if (cardOpened) {
+      window.card.removeCard();
+    }
+  });
+
   function onError() {
     showErrorMessage();
   }
 
   form.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    window.xhr.upload(new FormData(form), onSuccess, onError)
+    window.xhr.upload(new FormData(form), onSuccess, onError);
+  });
+
+  var timeIn = document.querySelector('#timein');
+  var timeOut = document.querySelector('#timeout');
+
+  timeIn.addEventListener('change', function () {
+    timeOut.value = timeIn.value;
+  });
+
+  timeOut.addEventListener('change', function () {
+    timeIn.value = timeOut.value;
+  });
+
+  type.addEventListener('change', function () {
+    switch (type.value) {
+      case 'bungalo':
+        price.placeholder = '0';
+        price.min = 0;
+        break;
+      case 'flat':
+        price.placeholder = '1000';
+        price.min = 1000;
+        break;
+      case 'house':
+        price.placeholder = '5000';
+        price.min = 5000;
+        break;
+      case 'palace':
+        price.placeholder = '10000';
+        price.min = 10000;
+        break;
+    }
   });
 })();
-
-
 

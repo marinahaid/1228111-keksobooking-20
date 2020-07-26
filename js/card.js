@@ -56,7 +56,6 @@
       newItemFeature.classList.add('popup__feature');
       newItemFeature.classList.add('popup__feature--' + cardData.offer.features[i]
       );
-
       cardElement.querySelector('.popup__features').appendChild(newItemFeature);
     }
 
@@ -83,8 +82,26 @@
     }
 
     map.insertBefore(cardElement, map.querySelector('map__filters-container'));
-  }
 
+    var popupClose = document.querySelector('.popup__close');
+    popupClose.addEventListener('click', onpopupCloseClick);
+    document.addEventListener('keydown', onkeydownEscPopupClose);
+
+    function onpopupCloseClick() {
+      removeCard();
+      var activePin = map.querySelector('.map__pin--active');
+      if (activePin) {
+        activePin.classList.remove('map__pin--active');
+      }
+      document.removeEventListener('keydown', onkeydownEscPopupClose);
+    }
+
+    function onkeydownEscPopupClose(evt) {
+      if (evt.key === 'Escape') {
+        onpopupCloseClick();
+      }
+    }
+  }
   window.card = {
     renderCard: renderCard,
     removeCard: removeCard
