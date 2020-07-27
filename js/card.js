@@ -80,9 +80,7 @@
       }
       cardElement.querySelector('.popup__photos').append(fragment);
     }
-
     map.insertBefore(cardElement, map.querySelector('map__filters-container'));
-
     var popupClose = document.querySelector('.popup__close');
     popupClose.addEventListener('click', onPopupCloseClick);
     document.addEventListener('keydown', onKeyDownEscPopupClose);

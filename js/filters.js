@@ -11,7 +11,6 @@
 
   function allFiltersCheck() {
     var filteredAds = [];
-
     for (var i = 0; i < window.adverts.length; i++) {
       var ad = window.adverts[i];
       var isSuitabledAd = true;
@@ -20,27 +19,22 @@
       if (isSuitabledAd === false) {
         continue;
       }
-
       isSuitabledAd = checkPrice(ad);
       if (isSuitabledAd === false) {
         continue;
       }
-
       isSuitabledAd = checkRooms(ad);
       if (isSuitabledAd === false) {
         continue;
       }
-
       isSuitabledAd = checkGuests(ad);
       if (isSuitabledAd === false) {
         continue;
       }
-
       isSuitabledAd = checkFeatures(ad);
       if (isSuitabledAd === false) {
         continue;
       }
-
       filteredAds.push(ad);
       if (filteredAds.length >= MAX_COUNT_ADS) {
         break;
@@ -76,21 +70,18 @@
     }
     return true;
   }
-
   function checkRooms(ad) {
     if (housingRooms.value !== 'any') {
       return ad.offer.rooms === +housingRooms.value;
     }
     return true;
   }
-
   function checkGuests(ad) {
     if (housingGuests.value !== 'any') {
       return ad.offer.guests === +housingGuests.value;
     }
     return true;
   }
-
   function checkFeatures(ad) {
     var filterSelectedFeatures = filterFeatures.filter(function (item) {
       return item.checked;
@@ -104,5 +95,4 @@
     return true;
   }
   filters.addEventListener('change', window.debounce(allFiltersCheck));
-
 })();

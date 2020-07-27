@@ -9,7 +9,6 @@
   var type = form.querySelector('#type');
   var price = form.querySelector('#price');
   var rooms = form.querySelector('#room_number');
-
   function checkNumGuests(room) {
     var numGuests = parseInt(guests.value, 10);
     guests.setCustomValidity('');
@@ -70,7 +69,6 @@
 
   var timeIn = document.querySelector('#timein');
   var timeOut = document.querySelector('#timeout');
-
   timeIn.addEventListener('change', function () {
     timeOut.value = timeIn.value;
   });
@@ -99,19 +97,15 @@
         break;
     }
   });
-
   reset.addEventListener('click', function (evt) {
     evt.preventDefault();
     form.reset();
     map.classList.add('map--faded');
     form.classList.add('ad-form--disabled');
-
     window.map.disactivatePage();
     window.pin.removeAllPins();
-
     mapPin.style.top = window.map.mapPinInitCoords.y + 'px';
     mapPin.style.left = window.map.mapPinInitCoords.x + 'px';
-
     window.map.setAddress();
 
     var cardOpened = map.querySelector('.map__card');
