@@ -84,21 +84,21 @@
     map.insertBefore(cardElement, map.querySelector('map__filters-container'));
 
     var popupClose = document.querySelector('.popup__close');
-    popupClose.addEventListener('click', onpopupCloseClick);
-    document.addEventListener('keydown', onkeydownEscPopupClose);
+    popupClose.addEventListener('click', onPopupCloseClick);
+    document.addEventListener('keydown', onKeyDownEscPopupClose);
 
-    function onpopupCloseClick() {
+    function onPopupCloseClick() {
       removeCard();
       var activePin = map.querySelector('.map__pin--active');
       if (activePin) {
         activePin.classList.remove('map__pin--active');
       }
-      document.removeEventListener('keydown', onkeydownEscPopupClose);
+      document.removeEventListener('keydown', onKeyDownEscPopupClose);
     }
 
-    function onkeydownEscPopupClose(evt) {
+    function onKeyDownEscPopupClose(evt) {
       if (evt.key === 'Escape') {
-        onpopupCloseClick();
+        onPopupCloseClick();
       }
     }
   }

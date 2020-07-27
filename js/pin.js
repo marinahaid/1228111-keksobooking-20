@@ -2,6 +2,7 @@
 
 (function () {
   var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
+  var map = document.querySelector('.map');
   var activePin = null;
 
   function renderPin(ad) {
@@ -23,8 +24,14 @@
     });
     return pinElement;
   }
-
+  function removeAllPins() {
+    var allPins = map.querySelectorAll('.map__pin:not(.map__pin--main)');
+    allPins.forEach(function (it) {
+      it.remove();
+    });
+  }
   window.pin = {
-    renderPin: renderPin
+    renderPin: renderPin,
+    removeAllPins: removeAllPins
   };
 })();
