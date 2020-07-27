@@ -2,12 +2,14 @@
 
 (function () {
   var map = document.querySelector('.map');
+  var mapPin = document.querySelector('.map__pin--main');
   var form = document.querySelector('.ad-form');
   var reset = form.querySelector('.ad-form__reset');
   var guests = document.querySelector('#capacity');
   var type = form.querySelector('#type');
   var price = form.querySelector('#price');
   var rooms = form.querySelector('#room_number');
+
   function checkNumGuests(room) {
     var numGuests = parseInt(guests.value, 10);
     guests.setCustomValidity('');
@@ -30,7 +32,7 @@
     }
 
     if (room === 100) {
-      if (numGuests !== [100 - 0]) {
+      if (numGuests !== 0) {
         guests.setCustomValidity('Не для гостей');
       }
     }
@@ -66,103 +68,6 @@
     checkNumGuests(roomNumber);
   });
 
-  var main = document.querySelector('main');
-  function onclickSuccessMsg() {
-    var successMsg = main.querySelector('.success');
-    if (successMsg) {
-      successMsg.remove();
-    }
-    document.removeEventListener('keydown', onkeydownEsc);
-    document.removeEventListener('click', onclickSuccessMsg);
-  }
-  function onkeydownEsc(evt) {
-    if (evt.key === 'Escape') {
-      onclickSuccessMsg();
-    }
-  }
-
-  function showSuccessMessage() {
-    var template = document.querySelector('#success').content;
-    var successMsg = template.cloneNode(true);
-    document.querySelector('main').appendChild(successMsg);
-    document.addEventListener('click', onclickSuccessMsg);
-    document.addEventListener('keydown', onkeydownEsc);
-  }
-
-  function showErrorMessage() {
-    var template = document.querySelector('#error').content;
-    var errorMsg = template.cloneNode(true);
-    document.querySelector('main').appendChild(errorMsg);
-
-    var errorButton = main.querySelector('.error__button');
-    errorButton.addEventListener('click', onclickErrorButton);
-    document.addEventListener('keydown', onkeydownEscErrorMsg);
-  }
-
-  function onclickErrorButton() {
-    var errorMsg = main.querySelector('.error');
-    if (errorMsg) {
-      errorMsg.remove();
-    }
-    document.removeEventListener('keydown', onkeydownEsc);
-    document.removeEventListener('click', onclickErrorButton);
-  }
-  function onkeydownEscErrorMsg(evt) {
-    if (evt.key === 'Escape') {
-      onclickErrorButton();
-    }
-  }
-
-  function onSuccess(evt) {
-    evt.preventDefault();
-    form.reset();
-    map.classList.add('map--faded');
-    form.classList.add('ad-form--disabled');
-
-    showSuccessMessage();
-    window.map.disactivatePage();
-    window.filters.removeAllPins();
-    var mapPin = document.querySelector('.map__pin--main');
-    mapPin.style.top = window.map.mapPinInitCoords.y + 'px';
-    mapPin.style.left = window.map.mapPinInitCoords.x + 'px';
-
-    window.map.setAddress();
-
-    var cardOpened = map.querySelector('.map__card');
-    if (cardOpened) {
-      window.card.removeCard();
-    }
-  }
-
-  reset.addEventListener('click', function (evt) {
-    evt.preventDefault();
-    form.reset();
-    map.classList.add('map--faded');
-    form.classList.add('ad-form--disabled');
-
-    window.map.disactivatePage();
-    window.filters.removeAllPins();
-    var mapPin = document.querySelector('.map__pin--main');
-    mapPin.style.top = window.map.mapPinInitCoords.y + 'px';
-    mapPin.style.left = window.map.mapPinInitCoords.x + 'px';
-
-    window.map.setAddress();
-
-    var cardOpened = map.querySelector('.map__card');
-    if (cardOpened) {
-      window.card.removeCard();
-    }
-  });
-
-  function onError() {
-    showErrorMessage();
-  }
-
-  form.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-    window.xhr.upload(new FormData(form), onSuccess, onError);
-  });
-
   var timeIn = document.querySelector('#timein');
   var timeOut = document.querySelector('#timeout');
 
@@ -194,5 +99,29 @@
         break;
     }
   });
-})();
 
+  reset.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    form.reset();
+    map.classList.add('map--faded');
+    form.classList.add('ad-form--disabled');
+
+    window.map.disactivatePage();
+    window.pin.removeAllPins();
+
+    mapPin.style.top = window.map.mapPinInitCoords.y + 'px';
+    mapPin.style.left = window.map.mapPinInitCoords.x + 'px';
+
+    window.map.setAddress();
+
+    var cardOpened = map.querySelector('.map__card');
+    if (cardOpened) {
+      window.card.removeCard();
+    }
+  });
+
+  form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.xhr.upload(new FormData(form), window.dialog.onSuccess, window.dialog.onError);
+  });
+})();
